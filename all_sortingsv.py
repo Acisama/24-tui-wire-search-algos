@@ -52,12 +52,13 @@ def get_array_sort(nameid=None):
 
     if nameid == 'eo':
         def array_sort(Array):
-            length = len(Array)
-            sortedArray = [None]*length
-            for i in range(length):
-                m = max(Array)
-                sortedArray[i] = m
-                del Array[Array.index(m)]
+            sortedArray = []
+            while len(Array)>0:
+                m = np.max(Array)
+                index = np.argwhere(Array == m)
+                for j in index:
+                    sortedArray.append(float(Array[j]))
+                Array = np.delete(Array, index)
             return sortedArray
 
     return array_sort
